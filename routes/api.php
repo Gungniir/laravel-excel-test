@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth.basic')->group(function () {
     Route::get('/ping', [PingController::class, 'ping']);
 
+    Route::get('/excel', [ExcelController::class, 'index']);
     Route::post('/excel', [ExcelController::class, 'store']);
 });
