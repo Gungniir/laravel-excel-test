@@ -54,7 +54,7 @@ class ExcelController
         return response()->json([
             'status' => 'success',
             'data' => [
-                'path' => $path
+                'id' => $file->id
             ],
         ], 201);
     }
