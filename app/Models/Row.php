@@ -27,6 +27,8 @@ use Illuminate\Support\Carbon;
  */
 class Row extends Model
 {
+    use HasFactory;
+
     public $timestamps = false;
     protected $casts = [
         'date' => 'date'

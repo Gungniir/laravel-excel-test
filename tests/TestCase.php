@@ -7,4 +7,8 @@ use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
+    protected $seed = true;
+
+    protected $email = 'test@example.com';
+    protected $password = 'password';
 }

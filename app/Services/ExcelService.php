@@ -18,6 +18,11 @@ class ExcelService
         Redis::del($this->getCacheKey($fileId));
     }
 
+    public function getStatusForFile(int $fileId): ?int
+    {
+        return Redis::get($this->getCacheKey($fileId));
+    }
+
     private function getCacheKey(int $fileId): string
     {
         return self::CACHE_KEY . $fileId;
