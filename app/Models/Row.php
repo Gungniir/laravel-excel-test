@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Events\RowCreated;
+use App\Events\RowSaved;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
