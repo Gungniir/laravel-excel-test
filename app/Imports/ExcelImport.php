@@ -70,6 +70,8 @@ class ExcelImport implements ToModel, WithEvents, WithBatchInserts, WithChunkRea
     {
         return [
             AfterSheet::class => function () {
+                // Так как мы используем WithBatchInserts, то при вставке записей в БД не срабатывает событие saved.
+                // Поэтому мы вручную вызываем событие RowSaved для каждой модели.
                 foreach ($this->models as $model) {
                     RowSaved::dispatch($model);
                 }
