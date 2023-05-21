@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\PingController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth.basic')->group(function () {
     Route::get('/ping', [PingController::class, 'ping']);
+
+    Route::post('/excel', [ExcelController::class, 'store']);
 });
