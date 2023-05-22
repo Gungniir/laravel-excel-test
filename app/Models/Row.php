@@ -39,4 +39,13 @@ class Row extends Model
         'file_id',
         'date',
     ];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::saved(function (Row $row) {
+            RowSaved::dispatch($row);
+        });
+    }
 }

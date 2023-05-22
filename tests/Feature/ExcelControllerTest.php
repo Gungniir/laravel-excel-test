@@ -2,7 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Jobs\ProcessExcelFormulasJob;
+use App\Jobs\PrepareForImportRowsJob;
+use App\Jobs\ProcessImportRowsJob;
 use App\Models\Row;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -19,7 +20,6 @@ class ExcelControllerTest extends TestCase
      */
     public function test_store(): void
     {
-        Excel::fake();
         Queue::fake();
 
         $file = UploadedFile::fake()->create('test.xlsx');
@@ -28,7 +28,7 @@ class ExcelControllerTest extends TestCase
             ->post('/api/excel', ['excel' => $file])
             ->assertStatus(201);
 
-        Queue::assertPushed(ProcessExcelFormulasJob::class);
+        Queue::assertPushed(PrepareForImportRowsJob::class);
     }
 
     public function test_index(): void

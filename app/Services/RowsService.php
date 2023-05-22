@@ -4,7 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Facades\Redis;
 
-class ExcelService
+class RowsService
 {
     const CACHE_KEY = 'excel_progress_';
 

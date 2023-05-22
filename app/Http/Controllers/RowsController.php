@@ -3,15 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Excel\StoreRequest;
-use App\Imports\ExcelImport;
-use App\Jobs\ProcessExcelFormulasJob;
+use App\Jobs\PrepareForImportRowsJob;
 use App\Models\File;
 use App\Models\Row;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
 
-class ExcelController
+class RowsController
 {
     /**
      * Display a listing of the resource.
@@ -45,11 +43,7 @@ class ExcelController
             'path' => $path,
         ]);
 
-        ProcessExcelFormulasJob::dispatch($path)->chain([
-            function () use ($file) {
-                Excel::import(new ExcelImport($file->id), $file->path);
-            }
-        ]);
+        PrepareForImportRowsJob::dispatch($file);
 
         return response()->json([
             'status' => 'success',

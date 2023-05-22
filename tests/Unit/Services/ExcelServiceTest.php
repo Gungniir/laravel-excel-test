@@ -2,18 +2,18 @@
 
 namespace Tests\Unit\Services;
 
-use App\Services\ExcelService;
+use App\Services\RowsService;
 use Tests\TestCase;
 
 class ExcelServiceTest extends TestCase
 {
-    private ExcelService $service;
+    private RowsService $service;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->service = $this->app->make(ExcelService::class);
+        $this->service = $this->app->make(RowsService::class);
     }
 
     public function test_saving_status(): void
